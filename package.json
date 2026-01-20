@@ -1,0 +1,24 @@
+{
+  "name": "student-attendance-management-sys",
+  "version": "1.0.0",
+  "description": "...",
+  "homepage": "https://github.com/Hrishi-29/Student-Attendance-Management-Sys#readme",
+  "bugs": {
+    "url": "https://github.com/Hrishi-29/Student-Attendance-Management-Sys/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hrishi-29/Student-Attendance-Management-Sys.git"
+  },
+  "license": "ISC",
+  "author": "Hrishi Raj Verma",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@faker-js/faker": "^10.2.0",
+    "mysql2": "^3.16.1"
+  }
+}
