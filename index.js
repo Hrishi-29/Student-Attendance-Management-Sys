@@ -1,5 +1,7 @@
 const mysql = require("mysql2");
 const { faker } = require("@faker-js/faker");
+const express = require("express");
+const app = express();
 
 const connection = mysql.createConnection({
     host: "localhost",
@@ -28,3 +30,11 @@ let createRandomUser = () => {
         password: faker.internet.password(),
     };
 };
+
+app.get("/", (req, res) => {
+    res.send("Welcome to Login-page");
+});
+
+app.listen("8080", () => {
+    console.log("Listening...");
+});
