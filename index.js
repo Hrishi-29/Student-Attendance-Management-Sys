@@ -10,18 +10,6 @@ const connection = mysql.createConnection({
     password: "#Papaji05_",
 });
 
-let q = " INSERT INTO user(id, username, email, password) VALUES (?, ?, ?, ?)";
-let values = ["123", "adw", "asdwa@aa", "asda"];
-
-try {
-    connection.query(q, values, (e, res) => {
-        if (e) throw e;
-        console.log(res);
-    });
-} catch (e) {
-    console.log(e);
-}
-
 let createRandomUser = () => {
     return {
         userId: faker.string.uuid(),
@@ -31,10 +19,29 @@ let createRandomUser = () => {
     };
 };
 
-app.get("/", (req, res) => {
-    res.send("Welcome to Login-page");
+let port = 8080;
+
+app.listen(port, () => {
+    console.log(`Listening...${port}`);
 });
 
-app.listen("8080", () => {
-    console.log("Listening...");
+let data = [];
+length1 = data.length;
+for (var i = 1; i < 100; i++) {
+    data.push(createRandomUser());
+}
+// console.log(data);
+
+app.get("/", (req, res) => {
+    let q = `INSERT INTO user(id, username, email, password) VALUES ?`;
+    try {
+        connection.query(q, data, (e, result) => {
+            console.log(result);
+        });
+    } catch (e) {
+        res.send("error in db");
+        console.log(e);
+    }
+    console.log("request received...");
+    res.send("Welcome to login-page");
 });
