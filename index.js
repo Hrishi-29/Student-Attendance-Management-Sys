@@ -1,7 +1,12 @@
+"Use strict";
 const mysql = require("mysql2");
 const { faker } = require("@faker-js/faker");
 const express = require("express");
 const app = express();
+const path = require("path");
+
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "/views"));
 
 const connection = mysql.createConnection({
     host: "localhost",
@@ -10,38 +15,36 @@ const connection = mysql.createConnection({
     password: "#Papaji05_",
 });
 
-let createRandomUser = () => {
-    return {
-        userId: faker.string.uuid(),
-        username: faker.internet.username(),
-        email: faker.internet.email(),
-        password: faker.internet.password(),
-    };
-};
-
 let port = 8080;
 
 app.listen(port, () => {
     console.log(`Listening...${port}`);
 });
 
+let createRandomUser = () => {
+    return [
+        faker.string.uuid(),
+        faker.internet.username(),
+        faker.internet.email(),
+        faker.internet.password(),
+    ];
+};
+
+let q = "INSERT INTO user(id, username, email, password) VALUES ?";
 let data = [];
-length1 = data.length;
-for (var i = 1; i < 100; i++) {
+for (let i = 1; i <= 100; i++) {
     data.push(createRandomUser());
 }
-// console.log(data);
 
-app.get("/", (req, res) => {
-    let q = `INSERT INTO user(id, username, email, password) VALUES ?`;
-    try {
-        connection.query(q, data, (e, result) => {
-            console.log(result);
-        });
-    } catch (e) {
-        res.send("error in db");
-        console.log(e);
-    }
-    console.log("request received...");
-    res.send("Welcome to login-page");
-});
+// app.get("/", (req, res) => {
+try {
+    connection.query(q, [data], (err, result) => {
+        // if (err) throw err;
+        console.log(result);
+        // res.render("home.ejs");
+    });
+} catch (err) {
+    console.log(err);
+}
+
+connection.end();
