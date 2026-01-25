@@ -24,6 +24,11 @@
                 <td><%=result.username%></td>
                 <td><%=result.email%></td>
                 <td><%=result.password%></td>
+                <form method='GET' action="/user/<%=result.id%>/edit">
+                    <td>
+                        <button>Edit_username!</button>
+                    </td>
+                </form>
             </tr>
 
         <%}%>

@@ -48,6 +48,7 @@ app.get("/", (req, res) => {
     // res.send("Welcome to My System...");
 });
 // connection.end();
+
 app.get("/users", (req, res) => {
     let q = "SELECT * FROM user";
     try {
