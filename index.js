@@ -30,21 +30,31 @@ let createRandomUser = () => {
     ];
 };
 
-let q = "INSERT INTO user(id, username, email, password) VALUES ?";
-let data = [];
-for (let i = 1; i <= 100; i++) {
-    data.push(createRandomUser());
-}
-
-// app.get("/", (req, res) => {
-try {
-    connection.query(q, [data], (err, result) => {
-        // if (err) throw err;
-        console.log(result);
-        // res.render("home.ejs");
-    });
-} catch (err) {
-    console.log(err);
-}
-
-connection.end();
+app.get("/", (req, res) => {
+    let q = "SELECT count(*) FROM user";
+    try {
+        connection.query(q, (err, results) => {
+            if (err) throw err;
+            console.log(results);
+            let count = results[0]["count(*)"];
+            res.render("home.ejs", { count });
+        });
+    } catch (err) {
+        console.log(err);
+    }
+    // res.send("Welcome to My System...");
+});
+// connection.end();
+app.get("/users", (req, res) => {
+    let q = "SELECT * FROM user";
+    try {
+        connection.query(q, (err, results) => {
+            if (err) throw err;
+            console.log(results);
+            res.render("show.ejs", { results });
+        });
+    } catch (err) {
+        console.log(err);
+    }
+    // res.send("Welcome to My System...");
+});
