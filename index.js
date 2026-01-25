@@ -4,7 +4,10 @@ const { faker } = require("@faker-js/faker");
 const express = require("express");
 const app = express();
 const path = require("path");
+const methodOverride = require("method-override");
 
+app.use(methodOverride("__method"));
+app.use(express.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "/views"));
 
