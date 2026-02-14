@@ -49,16 +49,36 @@ app.get("/", (req, res) => {
 });
 // connection.end();
 
-app.get("/users", (req, res) => {
+app.get("/user", (req, res) => {
     let q = "SELECT * FROM user";
     try {
         connection.query(q, (err, results) => {
             if (err) throw err;
-            console.log(results);
             res.render("show.ejs", { results });
         });
     } catch (err) {
         console.log(err);
+        res.send("System Error...");
     }
     // res.send("Welcome to My System...");
+});
+
+app.get("/user/:id/edit", (req, res) => {
+    let { id } = req.params;
+    let q = `SELECT * FROM user WHERE id='${id}'`;
+    try {
+        connection.query(q, (err, results) => {
+            if (err) throw err;
+            let user = results[0];
+            res.render("edit.ejs", { user });
+        });
+    } catch (err) {
+        console.log(err);
+        res.send("System Error...");
+    }
+});
+
+app.get("/login", (req, res) => {
+    // res.send("Welcome Back...");
+    res.render("login.ejs");
 });
