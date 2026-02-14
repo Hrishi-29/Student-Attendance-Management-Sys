@@ -33,6 +33,10 @@ let createRandomUser = () => {
     ];
 };
 
+let createRandomId = () => {
+    return [faker.string.uuid()];
+};
+
 app.get("/", (req, res) => {
     let q = "SELECT count(*) FROM user";
     try {
@@ -82,3 +86,5 @@ app.get("/login", (req, res) => {
     // res.send("Welcome Back...");
     res.render("login.ejs");
 });
+
+app.patch("/login/:password", (req, res) => {});
