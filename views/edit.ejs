@@ -6,10 +6,10 @@
     <title>Edit The User </title>
 </head>
 <body>
-    <h3>You're editing about to this user...</h3>
+    <h3>You're editing about to this user...<%=user.email%></h3>
     <form action="#">
-        <input type="text" placeholder="<%=user.id%>">
-        <input type="password" placeholder="Enter_password">
+        <input type="text" placeholder="<%=user.username%>">
+        <input type="password" name="password" placeholder="Enter_password">
         <button type="submit">Edit!</button>
     </form>
 
