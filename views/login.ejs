@@ -6,9 +6,9 @@
     <title>login-page </title>
 </head>
 <body>
-    <form method='get' action="/login/home">
-        <input type="text" placeholder="Enter your name" class="enter-name">
-        <input type="password" placeholder="Password" class="enter-pass">
+    <form method='post' action="/login/<%=results.username%>/<%=results.password%>?_method=PATCH">
+        <input type="text" placeholder="Enter your name" class="enter-name" name="username">
+        <input type="password" placeholder="Password" class="enter-pass" name="password">
         <button type="submit" class="push">Submit </button>
     </form>
 </body>
