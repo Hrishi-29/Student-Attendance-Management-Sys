@@ -83,8 +83,18 @@ app.get("/user/:id/edit", (req, res) => {
 });
 
 app.get("/login", (req, res) => {
-    // res.send("Welcome Back...");
-    res.render("login.ejs");
+    let q = "SELECT * FROM user";
+    try {
+        connection.query(q, (err, results) => {
+            if (err) throw err;
+            // console.log(results);
+            // res.send("Welcome Back...");
+            res.render("login.ejs", { results });
+        });
+    } catch (err) {
+        console.log(err);
+        res.send("System Error...");
+    }
 });
 
-app.patch("/login/:password", (req, res) => {});
+app.patch("/login/:username/:password", (req, res) => {});
