@@ -97,4 +97,23 @@ app.get("/login", (req, res) => {
     }
 });
 
-app.patch("/login/:username/:password", (req, res) => {});
+app.patch("/login/:username/:password", (req, res) => {
+    res.send("Fetching...");
+    console.log("Fetching...");
+    //ERROR-->
+    // let { user, formPass } = req.params;
+    // let q = `SELECT * FROM user WHERE username = '${user}'&& password = '${formPass}'`;
+    // try {
+    //     connection.query(q, (err, results) => {
+    //         if (err) throw err;
+    //         let user = results[0];
+    //         console.log(user);
+    //         // res.send(user);
+    //         // res.render("edit.ejs", { user });
+    //     });
+    // } catch (err) {
+    //     // console.log(err);
+    //     res.send("System Error...");
+    // }
+    // res.send("Welcome Back! Your Profile...");
+});
