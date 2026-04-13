@@ -6,7 +6,9 @@
     <title>login-page </title>
 </head>
 <body>
-    <form method='post' action="/login/<%=results.username%>/<%=results.password%>?_method=PATCH">
+    <h1>Welcome to Login-Page</h1>
+    <p>Here's more than <span>1000</span>Users</p>
+    <form method='POST' action="/loginpage/<%=results.username%>/<%=results.password%>?_method=PATCH">
         <input type="text" placeholder="Enter your name" class="enter-name" name="username">
         <input type="password" placeholder="Password" class="enter-pass" name="password">
         <button type="submit" class="push">Submit </button>
